@@ -3,7 +3,7 @@ var primeNumbers = function(input) {
   for(var i = 2; i <= input; i++) {
     array.push(i);
   };
-  
+
   array.forEach(function(number) {
       for(var i = number + number; i <= input; i = i + number) {
           var index = array.indexOf(i)
@@ -12,5 +12,18 @@ var primeNumbers = function(input) {
           };
       };
     });
-  return array;
+  return array.join(", ");
 };
+
+$(document).ready(function() {
+
+  $("form#number_input").submit(function(event) {
+    var number = parseInt($("input#number").val());
+    var primes = primeNumbers(number);
+
+  $(".result").text(primes);
+  $("#results").show();
+  event.preventDefault();
+
+  });
+});
